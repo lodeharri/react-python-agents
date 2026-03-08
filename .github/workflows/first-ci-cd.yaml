@@ -1,0 +1,12 @@
+name: fist CI/CD
+on: ['push']
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código 📥 
+        uses: actions/checkout@v4
+
+      - name: echo a string
+        run: echo "Hello World"
