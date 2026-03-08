@@ -1,12 +1,18 @@
-name: fist CI/CD
-on: ['push']
+name: first CI/CD
+on: [push]
 
 jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Descargar código 📥 
+      - name: Descargar código 
         uses: actions/checkout@v4
 
-      - name: echo a string
-        run: echo "Hello World"
+      - name: Saludo al admin
+        # Comparamos el nombre de usuario (actor) con tu usuario real
+        if: github.actor == 'lodeharri' 
+        run: echo "Hola Jefe. Desplegando con la llave secreta ${{ secrets.MY_API_KEY }}"
+
+      - name: Saludo cualquiera
+        if: github.actor != 'lodeharri'
+        run: echo "No eres el admin, eres ${{ github.actor }}"
